@@ -105,11 +105,11 @@ if ($Alerts.Count -gt 0) {
 }
 
 $Summary = [PSCustomObject]@{
-    TotalChecks     = $AllResults.Count
-    HealthyServices = ($AllResults | Where-Object { $_.Count
-    UnIsHealthy }).healthy       = ($AllResults | Where-Object { -not $_.IsHealthy }).Count
-    Alerts          = $Alerts.Count
-    Timestamp       = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+    TotalChecks       = $AllResults.Count
+    HealthyServices   = @($AllResults | Where-Object { $_.IsHealthy }).Count
+    UnhealthyServices = @($AllResults | Where-Object { -not $_.IsHealthy }).Count
+    Alerts            = $Alerts.Count
+    Timestamp         = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
 }
 
 Write-Host "`n=== Summary ===" -ForegroundColor Green

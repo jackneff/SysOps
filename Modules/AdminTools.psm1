@@ -22,7 +22,7 @@ function Test-ServerReachability {
     )
     
     try {
-        $Ping = Test-Connection -ComputerName $ComputerName -Count 1 -TimeoutSeconds ($Timeout / 1000) -ErrorAction Stop
+        $Ping = Test-Connection -ComputerName $ComputerName -Count 1 -ErrorAction Stop
         return @{
             ComputerName = $ComputerName
             Reachable    = $true

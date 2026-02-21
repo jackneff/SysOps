@@ -48,3 +48,16 @@ Modules/PSGallery/
 # OS generated files
 .DS_Store
 desktop.ini
+
+# Helper scripts that shouldn't be committed
+git-init.bat
+
+# Secrets - NEVER commit!
+.env
+Secrets/*.xml
+Secrets/*.enc.xml
+Secrets/*.json
+Secrets/*.pfx
+Secrets/*.key
+Secrets/*.pem
+Secrets/sp-*.xml

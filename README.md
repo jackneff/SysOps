@@ -18,6 +18,9 @@ This toolkit provides scripts for daily operations including:
 - Scheduled task management
 - Server baseline comparison
 - Daily health check reporting
+- FTP/SFTP file transfers (via WinSCP)
+- File system operations
+- Secrets management (DPAPI, AES, Vaultwarden, Azure Key Vault)
 
 ## Structure
 
@@ -39,7 +42,10 @@ SysOps/
 ├── DataTransform/         # Data format conversion
 ├── ScheduledTasks/        # Task scheduling management
 ├── Baseline/              # Server baseline comparison
-└── Reports/               # Daily health check reports
+├── FTP/                   # FTP/SFTP file transfers
+├── FileSystem/            # File system operations
+├── Secrets/              # Secure credential management
+└── Reports/              # Daily health check reports
 ```
 
 ## Quick Start
@@ -84,6 +90,7 @@ Edit `Config/settings.json` to customize:
 - For AD scripts: Active Directory PowerShell module (RSAT-AD-PowerShell)
 - For IIS scripts: WebAdministration module
 - For SQL scripts: SqlServer module or dbatools
+- For FTP scripts: WinSCP assembly installed (`$env:ProgramFiles (x86)\WinSCP\WinSCPnet.dll`)
 
 ## Modules
 
@@ -103,6 +110,16 @@ Provides shared functions:
 ### Service Monitoring
 - `Check-ServiceStatus.ps1` - Check specific service status
 - `Check-ServiceHealth.ps1` - Monitor services across servers
+- `Monitor-CriticalServices.ps1` - Monitor critical services with alerts
+- `Find-DisabledAutoStartServices.ps1` - Find disabled auto-start services
+- `Find-HungServices.ps1` - Find hung/stuck services
+- `Test-ServiceAccountPermissions.ps1` - Check service account permissions
+- `Watch-ServiceStateChanges.ps1` - Watch for service state changes
+
+### Event Logs
+- `Get-EventLogErrors.ps1` - Get errors and warnings from event logs
+- `Get-SystemRestarts.ps1` - List system restarts (expected vs unexpected)
+- `Get-UserLogonEvents.ps1` - List user login events with details
 
 ### Web Monitoring
 - `Test-WebApplication.ps1` - Test single URL
@@ -138,6 +155,7 @@ Provides shared functions:
 ### System Info
 - `Get-SystemUptime.ps1` - Local uptime
 - `Get-SystemUptimeRemote.ps1` - Remote uptime
+- `Get-WindowsRoles.ps1` - List installed roles and features
 
 ### SQL
 - `Get-DatabaseSchema.ps1` - Database schema
@@ -145,6 +163,9 @@ Provides shared functions:
 - `Get-SQLData.ps1` - Execute queries
 - `Get-ActiveConnections.ps1` - Active connections
 - `Get-BlockedThreads.ps1` - Blocked processes
+- `Backup-Database.ps1` - Create database backup
+- `Get-DatabaseBackups.ps1` - List backup history
+- `Restore-Database.ps1` - Restore from backup
 
 ### Network Monitoring
 - `Get-PortStatus.ps1` - Check port availability
@@ -181,6 +202,39 @@ Provides shared functions:
 - `Get-ServerBaseline.ps1` - List stored baselines
 - `Compare-Baseline.ps1` - Diff current vs baseline
 - `Remove-ScheduledTask.ps1` - Delete baseline
+
+### FTP
+- `Send-FileToFtp.ps1` - Upload single file
+- `Send-BatchToFtp.ps1` - Batch upload files
+- `Get-FileFromFtp.ps1` - Download file
+- `Get-FtpDirectory.ps1` - List directory contents
+- `Test-FtpConnection.ps1` - Test FTP connection
+
+### File System
+- `Test-PathExists.ps1` - Test if path exists
+- `Get-IsDirectory.ps1` - Check if path is directory
+- `Get-FolderSize.ps1` - Get folder size
+- `Get-FileDetails.ps1` - Get file details (with optional hash)
+- `Get-DirectoryTree.ps1` - List directory structure
+- `Find-LargeFiles.ps1` - Find large files
+- `Get-FileHash.ps1` - Calculate file hash
+- `Compare-FileHash.ps1` - Compare two file hashes
+- `Get-FileAge.ps1` - Get file age information
+- `Find-OldFiles.ps1` - Find old files
+- `Get-DuplicateFiles.ps1` - Find duplicate files
+- `Get-FileType.ps1` - Get file type information
+- `Get-FilePermissions.ps1` - Get NTFS permissions
+- `Copy-Robust.ps1` - Robust file copy using Robocopy
+
+### Secrets
+- `Install-SecretModules.ps1` - Install prerequisites
+- `New-StoredCredential.ps1` - Create credential XML (DPAPI/AES)
+- `Get-StoredCredential.ps1` - Load credential in scripts
+- `New-EncryptedPassword.ps1` - Encrypt standalone password
+- `Get-WindowsCredential.ps1` - Windows Credential Manager
+- `Invoke-Vaultwarden.ps1` - Vaultwarden CLI wrapper
+- `Invoke-AzureKeyVault.ps1` - Azure Key Vault integration
+- `Get-Secret.ps1` - Unified secret retrieval
 
 ## License
 
