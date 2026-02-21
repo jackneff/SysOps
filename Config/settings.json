@@ -1,0 +1,46 @@
+{
+  "servers": [
+    "server1.domain.com",
+    "server2.domain.com"
+  ],
+  "domainControllers": [
+    "dc1.domain.com",
+    "dc2.domain.com"
+  ],
+  "criticalServices": [
+    "W3SVC",
+    "MSSQLSERVER",
+    "DNS",
+    "NetLogon",
+    "W32Time"
+  ],
+  "websites": [
+    {
+      "name": "Intranet",
+      "url": "http://intranet.domain.com"
+    },
+    {
+      "name": "CRM",
+      "url": "https://crm.domain.com"
+    }
+  ],
+  "ports": [
+    80,
+    443,
+    1433,
+    3389
+  ],
+  "diskSpaceThreshold": 80,
+  "certificateWarningDays": 30,
+  "sqlServers": [
+    {
+      "server": "sqlserver.domain.com",
+      "database": "master"
+    }
+  ],
+  "smtpServer": "smtp.domain.com",
+  "fromEmail": "sysops@domain.com",
+  "toEmail": "admin@domain.com",
+  "baselinePath": "c:\\Scripts\\Baselines",
+  "logRetentionDays": 30
+}

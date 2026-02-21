@@ -1,0 +1,50 @@
+# SysOps PowerShell Scripts - Git Ignore
+
+# Ignore PowerShell error logs
+*.err
+*.log
+
+# Ignore generated reports
+Reports/*.html
+Reports/*.csv
+Reports/*.json
+
+# Ignore baselines
+Baselines/*.json
+
+# Ignore personal settings overrides
+Config/settings.local.json
+Config/*.local.json
+
+# Windows thumbnail cache
+Thumbs.db
+ehthumbs.db
+
+# Windows temporary files
+*.tmp
+*.temp
+~$*
+
+# Visual Studio files
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# PowerShell modules from gallery (if installed locally)
+Modules/PSGallery/
+
+# Credential files (never commit!)
+*.pfx
+*.cer
+*.pem
+
+# Temporary files
+*.bak
+*.old
+*.swp
+
+# OS generated files
+.DS_Store
+desktop.ini
