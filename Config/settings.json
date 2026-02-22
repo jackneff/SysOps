@@ -42,5 +42,63 @@
   "fromEmail": "sysops@domain.com",
   "toEmail": "admin@domain.com",
   "baselinePath": "c:\\Scripts\\Baselines",
-  "logRetentionDays": 30
+  "logRetentionDays": 30,
+  "webTests": {
+    "restEndpoints": [
+      {
+        "name": "Example API - Users",
+        "url": "https://api.example.com/v1/users",
+        "method": "GET",
+        "auth": "bearer",
+        "bearerToken": "${API_TOKEN}",
+        "expectedStatusCode": 200,
+        "validateJson": true
+      },
+      {
+        "name": "Example API - Create User",
+        "url": "https://api.example.com/v1/users",
+        "method": "POST",
+        "auth": "apikey",
+        "apiKey": "${API_KEY}",
+        "apiKeyHeader": "X-API-Key",
+        "expectedStatusCode": 201
+      }
+    ],
+    "soapEndpoints": [
+      {
+        "name": "Weather Service",
+        "url": "https://weather.example.com/soap",
+        "action": "GetWeather",
+        "namespace": "http://weather.example.com"
+      }
+    ],
+    "graphEndpoints": [
+      {
+        "name": "Graph - List Users",
+        "url": "https://graph.microsoft.com/v1.0/users",
+        "tenantId": "${TENANT_ID}",
+        "clientId": "${GRAPH_CLIENT_ID}",
+        "clientSecret": "${GRAPH_CLIENT_SECRET}",
+        "expectedStatusCode": 200
+      }
+    ],
+    "graphqlEndpoints": [
+      {
+        "name": "GitHub GraphQL",
+        "url": "https://api.github.com/graphql",
+        "auth": "bearer",
+        "bearerToken": "${GITHUB_TOKEN}",
+        "query": "{ viewer { login } }"
+      }
+    ]
+  },
+  "webTestDefaults": {
+    "timeoutSeconds": 30,
+    "retryEnabled": false,
+    "retryCount": 3,
+    "retryDelayMs": 1000,
+    "validateSsl": true,
+    "logToFile": true,
+    "logPath": "C:\\SysOps\\Logs\\WebTests"
+  }
 }
